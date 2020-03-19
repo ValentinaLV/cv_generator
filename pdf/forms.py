@@ -6,7 +6,7 @@ from .models import Profile
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = '__all__'
+        exclude = ('url',)
 
         widgets = {
             'name': forms.TextInput(
@@ -28,26 +28,18 @@ class ProfileForm(forms.ModelForm):
                 attrs={'class': 'form-control', 'style': "margin-top: 15px;",
                        'placeholder': 'https://www.facebook.com/tinalysenok'}),
 
-            'university': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "MIT"}),
-            'degree': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Bachelor"}),
-            'edu_date_start': forms.DateInput(
-                attrs={'class': 'form-control datepicker', 'placeholder': 'MM/DD/YYYY', 'required': 'required'}),
-            'edu_date_end': forms.DateInput(
-                attrs={'class': 'form-control datepicker', 'placeholder': 'MM/DD/YYYY', 'required': 'required'}),
-
-            'position': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Position title'}),
-            'company_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Company name'}),
-            'description': forms.Textarea(
-                attrs={'class': 'form-control', 'cols': "100", 'rows': "10",
-                       'placeholder': 'Job description'}),
-            'job_date_start': forms.DateInput(
-                attrs={'class': 'form-control datepicker', 'placeholder': 'MM/DD/YYYY', 'required': 'required'}),
-            'job_date_end': forms.DateInput(
-                attrs={'class': 'form-control datepicker', 'placeholder': 'MM/DD/YYYY', 'required': 'required'}),
-
             'skills': forms.Textarea(
                 attrs={'class': 'form-control', 'cols': "100", 'rows': "10",
                        'placeholder': 'C, C++, Python'}),
+
+            'experience': forms.Textarea(
+                attrs={'class': 'form-control', 'cols': "100", 'rows': "10",
+                       'placeholder': 'Type company name, job description and dates of beginning and end of job'}),
+
+            'education': forms.Textarea(
+                attrs={'class': 'form-control', 'cols': "100", 'rows': "10",
+                       'placeholder': 'Type university, degree and dates of beginning and end of study'}),
+
             'interests': forms.Textarea(
                 attrs={'class': 'form-control', 'cols': "100", 'rows': "10",
                        'placeholder': 'Sport, reading, music'}),

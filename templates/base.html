@@ -40,17 +40,23 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
+            <li class="nav-item" style="margin-bottom: 10px;">
+                <a href="{% url 'pdf:resumes' %}" class="btn btn-outline-warning">Profiles</a>
+            </li>
+            <li class="nav-item" style="margin-bottom: 10px;">
+                <a href="{% url 'pdf:profile' %}" class="btn btn-outline-info">Generate CV</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="#education">Education</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
@@ -63,40 +69,40 @@
 </nav>
 
 <div class="container-fluid p-0">
-
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
-        <div class="w-100">
-            <div class="container">
-                <div class="row m-5">
-                    <div class="col-md-12">
-                        <h1>CV Generator</h1>
-                        <hr>
+    {% block content %}
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+            <div class="w-100">
+                <div class="container">
+                    <div class="row m-5">
+                        <div class="col-md-12">
+                            <h1>CV Generator</h1>
+                            <hr>
+                        </div>
                     </div>
-                </div>
-                <div class="row m-5">
-                    <div class="col-md-12">
-                        <h4>Please fill out your details</h4>
+                    <div class="row m-5">
+                        <div class="col-md-12">
+                            <h4>Please fill out your details</h4>
 
+                        </div>
                     </div>
-                </div>
-                <div class="row m-5">
-                    <div class="col-md-7">
+                    <div class="row m-5">
+                        <div class="col-md-7">
 
-                        <form method="POST">
-                            {% csrf_token %}
-                            {% for field in form %}
+                            <form method="POST">
+                                {% csrf_token %}
+                                {% for field in form %}
 
-                                {% if field.name == 'university' %}
-                                    <h2 class="mb-5">Education</h2>
-                                {% elif field.name == 'position' %}
-                                    <h2 class="mb-5">Experience</h2>
-                                {% elif field.name == 'skills' %}
-                                    <h2 class="mb-5">Skills</h2>
-                                {% elif field.name == 'interests' %}
-                                    <h2 class="mb-5">Interests</h2>
-                                {% elif field.name == 'awards_and_certifications' %}
-                                    <h2 class="mb-5" id="awards">Awards &amp; Certifications</h2>
-                                {% endif %}
+                                    {% if field.name == 'skills' %}
+                                        <h2 class="mb-5" id="skills">Skills</h2>
+                                    {% elif field.name == 'experience' %}
+                                        <h2 class="mb-5" id="experience">Experience</h2>
+                                    {% elif field.name == 'education' %}
+                                        <h2 class="mb-5" id="education">Education</h2>
+                                    {% elif field.name == 'interests' %}
+                                        <h2 class="mb-5" id="interests">Interests</h2>
+                                    {% elif field.name == 'awards_and_certifications' %}
+                                        <h2 class="mb-5" id="awards">Awards &amp; Certifications</h2>
+                                    {% endif %}
 
                                     <div class="form-group">
                                         {{ field.label }}
@@ -106,18 +112,18 @@
                                     <hr class="m-0">
 
 
-                            {% endfor %}
-                            <button type="submit" class="btn btn-warning">Submit</button>
-                        </form>
+                                {% endfor %}
+                                <button type="submit" class="btn btn-warning">Submit</button>
+                            </form>
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <hr class="m-0">
-
+        <hr class="m-0">
+    {% endblock %}
 </div>
 
 <!-- Bootstrap core JavaScript -->

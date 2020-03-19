@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+        <div class="w-100">
+            <div class="container">
+                <div class="row m-5">
+                    <div class="col-md-12">
+                        {% for resume in resumes %}
+                            <div class="col-md-12">
+                                <h4>{{ resume.name }}</h4>
+                                <span>
+                                    <a href="{{ resume.get_absolute_url }}" class="btn btn-info" role="button">View CV</a>
+                                </span>
+                                <span><a href="#" class="btn btn-info" role="button">Download CV</a></span>
+                                <hr>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
