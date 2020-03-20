@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+import django_heroku
 from environs import Env
 
 env = Env()
@@ -24,14 +25,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str('SECRET_KEY')
+# SECRET_KEY = env.str('SECRET_KEY')
+SECRET_KEY = '3jjwm3g8@a+-(7dapb)r6*^+nc(v)xr=@63qo%dnur87ib2n^3'
 
 CV_PER_PAGES = 5
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+
+# for heroku app
+ALLOWED_HOSTS = ['cv-generator.herokuapp.com']
 
 # Application definition
 
@@ -85,12 +90,20 @@ WSGI_APPLICATION = 'cv_generator.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': env.str('DB_NAME'),
+    #     'USER': env.str('DB_USER'),
+    #     'PASSWORD': env.str('DB_PASSWORD'),
+    #     'HOST': env.str('DB_HOST'),
+    #     'PORT': '5432',
+    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env.str('DB_NAME'),
-        'USER': env.str('DB_USER'),
-        'PASSWORD': env.str('DB_PASSWORD'),
-        'HOST': env.str('DB_HOST'),
+        'NAME': 'cvs_generator',
+        'USER': 'postgres',
+        'PASSWORD': 'Tinka140792',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -129,6 +142,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+# for heroku app
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
@@ -138,3 +152,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# for heroku app
+django_heroku.settings(locals())
