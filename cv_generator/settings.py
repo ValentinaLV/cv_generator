@@ -36,7 +36,7 @@ DEBUG = True
 # ALLOWED_HOSTS = []
 
 # for heroku app
-ALLOWED_HOSTS = ['cv-generator.herokuapp.com']
+ALLOWED_HOSTS = ['cvs-generator.herokuapp.com']
 
 # Application definition
 
