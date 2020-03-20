@@ -24,7 +24,7 @@
                     <div class="col-md-12">
                         {% for resume in page_obj.object_list %}
                             <div class="col-md-12">
-                                <h4>{{ resume.name }} {{ resume.created }}</h4>
+                                <h4>{{ resume.name }} - {{ resume.created }}</h4>
                                 <span>
                                     <a href="{{ resume.get_absolute_url }}" class="btn btn-warning"
                                        role="button">View CV</a>

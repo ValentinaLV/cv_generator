@@ -1,8 +1,11 @@
 asgiref==3.2.5
 certifi==2019.11.28
 Django==3.0.4
+django-pagedown==2.0.3
 environs==7.3.0
 html5lib==1.0.1
+Markdown==3.2.1
+markdown2==2.3.8
 marshmallow==3.5.1
 pdfkit==0.6.1
 Pillow==7.0.0

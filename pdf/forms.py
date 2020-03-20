@@ -1,9 +1,16 @@
 from django import forms
+from pagedown.widgets import PagedownWidget
 
 from .models import Profile
 
 
 class ProfileForm(forms.ModelForm):
+    skills = forms.CharField(widget=PagedownWidget)
+    experience = forms.CharField(widget=PagedownWidget)
+    education = forms.CharField(widget=PagedownWidget)
+    interests = forms.CharField(widget=PagedownWidget)
+    awards_and_certifications = forms.CharField(widget=PagedownWidget)
+
     class Meta:
         model = Profile
         exclude = ('url',)
@@ -28,22 +35,4 @@ class ProfileForm(forms.ModelForm):
                 attrs={'class': 'form-control', 'style': "margin-top: 15px;",
                        'placeholder': 'https://www.facebook.com/tinalysenok'}),
 
-            'skills': forms.Textarea(
-                attrs={'class': 'form-control', 'cols': "100", 'rows': "10",
-                       'placeholder': 'C, C++, Python'}),
-
-            'experience': forms.Textarea(
-                attrs={'class': 'form-control', 'cols': "100", 'rows': "10",
-                       'placeholder': 'Type company name, job description and dates of beginning and end of job'}),
-
-            'education': forms.Textarea(
-                attrs={'class': 'form-control', 'cols': "100", 'rows': "10",
-                       'placeholder': 'Type university, degree and dates of beginning and end of study'}),
-
-            'interests': forms.Textarea(
-                attrs={'class': 'form-control', 'cols': "100", 'rows': "10",
-                       'placeholder': 'Sport, reading, music'}),
-            'awards_and_certifications': forms.Textarea(
-                attrs={'class': 'form-control', 'cols': "100", 'rows': "10",
-                       'placeholder': 'Write Google Analytics Certified Developer'}),
         }

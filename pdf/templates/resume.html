@@ -32,19 +32,19 @@
                         <p>{{ resume.summary }}</p>
                         <hr/>
                         <h4>Skills</h4>
-                        <p>{{ resume.skills }}</p>
+                        <p>{{ resume.get_markdown_skills }}</p>
                         <hr/>
                         <h4>Previous Work Experience</h4>
-                        <p>{{ resume.experience }}</p>
+                        <p>{{ resume.get_markdown_experience }}</p>
                         <hr/>
                         <h4>Education</h4>
-                        <p>{{ resume.education }}</p>
+                        <p>{{ resume.get_markdown_education }}</p>
                         <hr/>
                         <h4>Interests</h4>
-                        <p>{{ resume.interests }}</p>
+                        <p>{{ resume.get_markdown_interests }}</p>
                         <hr/>
                         <h4>Awards & Certifications</h4>
-                        <p>{{ resume.awards_and_certifications }}</p>
+                        <p>{{ resume.get_markdown_awards_and_certifications }}</p>
                     </div>
                 </div>
             </div>

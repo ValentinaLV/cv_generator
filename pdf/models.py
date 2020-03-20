@@ -1,9 +1,10 @@
 from time import time
-from datetime import datetime
 
 from django.db import models
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 from django.utils.text import slugify
+from markdown import markdown
 
 
 def get_slug(s):
@@ -37,6 +38,21 @@ class Profile(models.Model):
 
     def get_absolute_url(self):
         return reverse('pdf:resume-details', kwargs={'slug': self.url})
+
+    def get_markdown_skills(self):
+        return mark_safe(markdown(self.skills, safe_mode='escape'))
+
+    def get_markdown_experience(self):
+        return mark_safe(markdown(self.experience, safe_mode='escape'))
+
+    def get_markdown_education(self):
+        return mark_safe(markdown(self.education, safe_mode='escape'))
+
+    def get_markdown_interests(self):
+        return mark_safe(markdown(self.interests, safe_mode='escape'))
+
+    def get_markdown_awards_and_certifications(self):
+        return mark_safe(markdown(self.awards_and_certifications, safe_mode='escape'))
 
     def __str__(self):
         return self.name
