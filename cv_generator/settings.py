@@ -25,8 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = env.str('SECRET_KEY')
-SECRET_KEY = '3jjwm3g8@a+-(7dapb)r6*^+nc(v)xr=@63qo%dnur87ib2n^3'
+SECRET_KEY = env.str('SECRET_KEY')
 
 CV_PER_PAGES = 5
 
@@ -89,14 +88,6 @@ WSGI_APPLICATION = 'cv_generator.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': env.str('DB_NAME'),
-    #     'USER': env.str('DB_USER'),
-    #     'PASSWORD': env.str('DB_PASSWORD'),
-    #     'HOST': env.str('DB_HOST'),
-    #     'PORT': '5432',
-    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cvs_generator',
