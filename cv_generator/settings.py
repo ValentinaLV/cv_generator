@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'pagedown',
-    'markdown_deux',
 
     'pdf',
 
