@@ -1,18 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+
+    <section class="p-3 p-lg-5">
+        <form action="{% url 'pdf:resumes' %}" method="GET" class="form-inline justify-content-center">
+            <div class="form-group">
+                <label>
+                    <input type="text" class="form-control" name="search"
+                           value="{{ request.get.search }}"
+                           placeholder="Search...">
+                </label>
+                <button type="submit" class="btn btn-warning post-search-btn">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section class="p-3 p-lg-5 d-flex align-items-center">
         <div class="w-100">
             <div class="container">
                 <div class="row m-5">
                     <div class="col-md-12">
-                        {% for resume in resumes %}
+                        {% for resume in page_obj.object_list %}
                             <div class="col-md-12">
-                                <h4>{{ resume.name }}</h4>
+                                <h4>{{ resume.name }} {{ resume.created }}</h4>
                                 <span>
-                                    <a href="{{ resume.get_absolute_url }}" class="btn btn-info" role="button">View CV</a>
+                                    <a href="{{ resume.get_absolute_url }}" class="btn btn-warning"
+                                       role="button">View CV</a>
                                 </span>
-                                <span><a href="{% url 'pdf:resume-download' resume.url %}" class="btn btn-info" role="button">Download CV</a></span>
+                                <span><a href="{% url 'pdf:resume-download' resume.url %}" class="btn btn-info"
+                                         role="button">Download CV</a></span>
                                 <hr>
                             </div>
                         {% endfor %}
@@ -21,4 +39,35 @@
             </div>
         </div>
     </section>
+
+    <div class="pb-lg-5 text-center">
+
+        <span class="page-item" style="{% if not prev_url %} opacity: 0.3; {% endif %}">
+            <a href="{{ prev_url }}" class="btn-default page-link" style="display: inline; color: #343a40;">
+                <span aria-hidden="true">←</span> Previous
+            </a>
+        </span>
+
+        {% for n in page_obj.paginator.page_range %}
+
+            {% if page_obj.number == n %}
+                <span class="page-item">
+                    <a href="?page={{ n }}" class="btn-default page-link"
+                       style="display: inline; background-color: #17a2b8; color: #343a40;">{{ n }}</a>
+                </span>
+
+            {% elif n > page_obj.number|add:-2 and n < page_obj.number|add:2 %}
+                <span class="page-item">
+                    <a href="?page={{ n }}" class="btn-default page-link"
+                       style="display: inline; color: #343a40;">{{ n }}</a>
+                </span>
+            {% endif %}
+
+        {% endfor %}
+
+        <span class="page-item" style="{% if not next_url %} opacity: 0.3; {% endif %}">
+                <a href="{{ next_url }}" class="btn-default page-link" style="display: inline; color: #343a40;">
+                   Next<span aria-hidden="true">→</span></a>
+            </span>
+    </div>
 {% endblock %}
