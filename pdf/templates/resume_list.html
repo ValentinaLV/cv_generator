@@ -12,7 +12,7 @@
                                 <span>
                                     <a href="{{ resume.get_absolute_url }}" class="btn btn-info" role="button">View CV</a>
                                 </span>
-                                <span><a href="#" class="btn btn-info" role="button">Download CV</a></span>
+                                <span><a href="{% url 'pdf:resume-download' resume.url %}" class="btn btn-info" role="button">Download CV</a></span>
                                 <hr>
                             </div>
                         {% endfor %}
